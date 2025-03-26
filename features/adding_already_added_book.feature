@@ -1,3 +1,4 @@
+@finished
 Feature: Om användaren försöker lägga en bok som redan finns i varukorgen
   ska antal av just den boken öka istället för att skapa en ny rad
 

@@ -1,30 +1,25 @@
-
 from behave import given, when, then
 
+@given('att användaren är på webbsidan för att se böcker')
+def step_given_books_page(context):
+    context.shopping_cart = {}
+    context.page = "Books_page"
+    print("Användaren är på webbsidan för böcker")
 
-@given('att användaren är på rätt webbsida, där man kan se böcker')
-def step_impl(context):
-    # Här skulle du normalt implementera logik för att navigera till rätt sida
-    # För nu, låt oss bara anta att vi är på rätt sida
-    context.on_book_page = True
-
-
-@when('användaren klickar på "Add to cart"-knappen')
-def step_impl(context):
-    # Här simulerar vi att lägga till en bok i varukorgen
-    if not hasattr(context, 'shopping_cart'):
-        context.shopping_cart = {}
-
-    book_id = "test_book"
-    if book_id in context.shopping_cart:
-        context.shopping_cart[book_id] += 1
+@when('användaren klickar på knappen "Add to cart" för en bok')
+def step_adding_book_to_cart(context):
+    book = "test_book"
+    if book in context.shopping_cart:
+        context.shopping_cart[book] += 1
     else:
-        context.shopping_cart[book_id] = 1
+        context.shopping_cart[book] = 1
 
+@then('ska boken "{book}" läggas till i varukorgen')
+def step_book_added_to_cart(context, book):
+    assert book in context.shopping_cart
+    assert context.shopping_cart[book] >= 1
 
-@then('ska boken läggas till i varukorgen och antalet skall öka med ett')
-def step_impl(context):
-    # Här verifierar vi att boken har lagts till och antalet har ökat
-    book_id = "test_book"
-    assert book_id in context.shopping_cart
-    assert context.shopping_cart[book_id] >= 1
+@then('antalet av boken i varukorgen ska öka med ett')
+def step_book_quantity_increased(context):
+    book = "test_book"
+    assert context.shopping_cart[book] == 1, f"Förväntade 1 bok, men fick {context.shopping_cart.get(book, 0)}"

@@ -19,3 +19,9 @@
 # environment.py: (Optional) Defines setup and teardown functions, among other hooks.
 # models/: (Optional) A directory for custom models or types you might use in your steps.
 # requirements.txt: Lists the project's dependencies.
+
+# 3 Write Gherkin
+
+# 4 Write Code => features
+
+# Run tests => run behave => behave --tags=@finished  => (or simply, for all tests) behave

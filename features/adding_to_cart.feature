@@ -1,8 +1,9 @@
+@finished
 Feature: Användaren kan lägga böcker i varukorg
 
   Scenario: Lägga till en bok i varukorgen
     Given att användaren är på rätt webbsida, där man kan se böcker
-    When användaren klickar på "Add to cart"-knappen
+    When användaren klickar på knappen "Add to cart"
     Then ska boken läggas till i varukorgen
     And användaren ska se en bekräftelse av att boken har lagts till
 
